@@ -17,6 +17,7 @@ var config = {
   var monthlyRate = 0;
   var totalBilled = 0;
 
+<<<<<<< HEAD
   $("#run-search").on("click", function (event) {
 
         var newRow = $("<tr>");
@@ -34,3 +35,8 @@ var config = {
 
   });
 
+=======
+
+//   $("#add-employee").on("click", function(event) {
+//     event.preventDefault();
+>>>>>>> f9e4c6fcfdf6392c520b7617bc8057a04499c83a
