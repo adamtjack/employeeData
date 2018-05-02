@@ -58,67 +58,27 @@
                                     <label for="startDate">Start Date:</label>
                                     <select id="startMonth" class="custom-select">
                                         <option value="" selected disabled>Month</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="10">12</option>
                                     </select>
                                 </div>
                                 <div class="col-auto">
                                     <label for="startDay">&nbsp</label>
                                     <select id="startDay" class="custom-select">
                                         <option value="" selected disabled>Day</option>
-                                        <script>
-                                            $("")
-                                        </script>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="10">12</option>
                                     </select>
                                 </div>
                                 <div class="col-auto">
                                     <label for="startYear">&nbsp</label>
                                     <select id="startYear" class="custom-select">
-                                        <option value="" selected disabled>Year</option>
-                                        <option value="2018">2018</option>
-                                        <option value="2017">2017</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="10">12</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="end-year">End Year (Optional):</label>
-                                <input type="text" class="form-control" id="end-year">
+                            <div class="form-group mt-3">
+                                <label for="monthlyRate">Monthly Rate ($):</label>
+                                <input type="text" class="form-control" id="monthlyRate">
                             </div>
-                            <button type="button" class="btn btn-default" id="addButton">
+                            <button type="button" class="btn btn-primary" id="addButton">
                             <i class="fa fa-plus"></i> Add</button>
-                            <button type="button" class="btn btn-default" id="clearButton">
+                            <button type="button" class="btn btn-primary" id="clearButton">
                             <i class="fa-fa-trash"></i> Clear Form</button>
                         </form>
                     </div>
@@ -151,6 +111,31 @@
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
     <script src="timesheetLogic.js"></script>
+
+    <script>
+        // Loop for making Month select form
+        for (i = 1; i < 13; i++) {
+            var newOption = $("<option>");
+            newOption.val(i);
+            newOption.text(i);
+            $("#startMonth").append(newOption);
+        }
+        // Loop for making Day select form
+        for (i = 1; i < 32; i++) {
+            var newOption = $("<option>");
+            newOption.val(i);
+            newOption.text(i);
+            $("#startDay").append(newOption);
+        }
+        // Loop for making Year select form
+        for (i = 1900; i < 2019; i++) {
+            var newOption = $("<option>");
+            newOption.val(i);
+            newOption.text(i);
+            $("#startYear").prepend(newOption);
+        }
+        $("#startYear").prepend("<option value='' selected disabled>Year</option>");
+    </script>
 
 </body>
 
