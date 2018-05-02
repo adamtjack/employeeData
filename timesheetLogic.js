@@ -36,5 +36,27 @@ $("#add-employee").on("click", function (event) {
 });
 
 
-//   $("#add-employee").on("click", function(event) {
-//     event.preventDefault();
+  $("#add-employee").on("click", function(event) {
+    event.preventDefault();
+
+      name = $("#name").val().trim();
+      role = $("#role").val().trim();
+      startDate = $("#startDate").val().trim();
+    //   monthsWorked = $("#").val().trim();
+      monthlyRate = $("#monthlyRate").val().trim();
+    //   totalBilled = $("#").val().trim();
+
+    console.log(name);
+
+      database.ref().push({
+        name: name,
+        role: role,
+        startDate: startDate,
+        monthsWorked: monthsWorked,
+        monthlyRate: monthlyRate,
+        totalBilled: totalBilled
+      });
+
+  });
+
+
