@@ -17,7 +17,7 @@ var monthsWorked = 0;
 var monthlyRate = 0;
 var totalBilled = 0;
 
-$("#run-search").on("click", function (event) {
+$("#add-employee").on("click", function (event) {
 
     event.preventDefault();
     var newRow = $("<tr>");
