@@ -5,17 +5,35 @@ var config = {
     projectId: "employeedata-9485b",
     storageBucket: "employeedata-9485b.appspot.com",
     messagingSenderId: "231854602629"
-  };
-  firebase.initializeApp(config);
+};
+firebase.initializeApp(config);
 
-  var database = firebase.database();
+var database = firebase.database();
 
-  var name = "";
-  var role = "";
-  var startDate = "";
-  var monthsWorked = 0;
-  var monthlyRate = 0;
-  var totalBilled = 0;
+var name = "";
+var role = "";
+var startDate = "";
+var monthsWorked = 0;
+var monthlyRate = 0;
+var totalBilled = 0;
+
+$("#run-search").on("click", function (event) {
+
+    event.preventDefault();
+    var newRow = $("<tr>");
+
+    var name = $("#name").val();
+    var role = $("#role").val();
+    var startDate = $("#startDate").val();
+    var monthlyRate = $("#monthlyRate").val();
+
+    console.log(name);
+    console.log(role);
+    console.log(startDate);
+    console.log(monthlyRate);
+
+
+});
 
 
   $("#add-employee").on("click", function(event) {
@@ -40,3 +58,5 @@ var config = {
       });
 
   });
+
+
