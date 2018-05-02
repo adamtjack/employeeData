@@ -16,3 +16,21 @@ var config = {
   var monthsWorked = 0;
   var monthlyRate = 0;
   var totalBilled = 0;
+
+  $("#run-search").on("click", function (event) {
+
+        var newRow = $("<tr>");
+
+        var name = $("#name").val;
+        var role = $("#role").val;
+        var startDate = $("#startDate").val;
+        var monthlyRate = $("#monthlyRate").val;
+
+        console.log(name);
+        console.log(role);
+        console.log(startDate);
+        console.log(monthlyRate);
+
+
+  });
+
