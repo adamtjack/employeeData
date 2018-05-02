@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Data Management</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron" style="background-color: #000000; color: white;">
+      <h1 class="text-center">Employee Data Management</h1>
+      <h2 class="text-center">A Comprehensive Directory of Employee Billable Hours</h2>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card" id="tableContainer">
+            <table class="table">
+                <!-- TABLE GOES HERE -->
+                <div>TABLE GOES HERE</div>
+            </table>
+        </div>
+        <div class="card" id="formContainer">
+            <div class="card-body">
+                <h2>Add Employee</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="employeeName">Employee Name:</label>
+                        <input type="text" class="form-control" id="employeeName">
+                    </div>
+                    <div class="form-group">
+                        <label for="employeeRole">Role:</label>
+                        <input type="text" class="form-control" id="employeeRole">
+                    </div>
+                    <div class="form-row">
+                        <div class="col-auto">
+                            <label for="startDate">Start Date:</label>
+                            <select id="startMonth" class="custom-select">
+                                <option value="" selected disabled>Month</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="10">12</option>
+                            </select>
+                        </div>
+                        <div class="col-auto">
+                            <label for="startDay">&nbsp</label>
+                            <select id="startDay" class="custom-select">
+                                <option value="" selected disabled>Day</option>
+                                <script>
+                                    $("")
+                                </script>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="10">12</option>
+                            </select>
+                        </div>
+                        <div class="col-auto">
+                            <label for="startYear">&nbsp</label>
+                            <select id="startYear" class="custom-select">
+                                <option value="" selected disabled>Year</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="10">12</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="end-year">End Year (Optional):</label>
+                        <input type="text" class="form-control" id="end-year">
+                    </div>
+                    <button type="button" class="btn btn-default" id="addButton">
+                    <i class="fa fa-plus"></i> Add</button>
+                    <button type="button" class="btn btn-default" id="clearButton">
+                    <i class="fa-fa-trash"></i> Clear Form</button>
+                </form>
+            </div>
+        </div>
+        </form>
+      </div>
+      </form>
+    </div>
+
+  </div>
+  </div>
+  </div>
+  </div>
+
+  <div class="row">
+      <div class="col-sm-12">
+        <hr>
+        <h5 class="text-center">
+          <small>Made by Team7 MacGang
+            <i class="material-icons" style="font-size:16px">desktop_mac</i>
+          </small>
+        </h5>
+  
+      </div>
+    </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+
+    // Clears results when Clear button is clicked
+    $("#clearButton").on("click", function (event) {
+      $(".articleBox").html('<div class="card-body article-view"><h3 class="card-title articleTitle my-1">Search for articles above!</h3></div>');
+    });
+
+
+
+    // This .on("click") function will trigger the AJAX Call
+    $("#run-search").on("click", function (event) {
+      $(".articleBox").empty();
+      // Preventing the submit button from trying to submit the form
+      // We're optionally using a form so the user may hit Enter to search instead of clicking the button
+      event.preventDefault();
+
+      // Here we grab the text from the input box
+      var article = $("#search-term").val();
+      var beginDate = $("#start-year").val();
+      var endDate = $("#end-year").val();
+      var numArticles = $("#article-count").val();
+      var fillBeginDate = ""
+      // var numArticles = $('#dropDownId :selected').text();
+
+      function fullStartYear() {
+        beginDate = beginDate + "0101"
+        return beginDate;
+      }
+
+      function fullEndYear() {
+        endDate = endDate + "1231"
+      }
+
+      console.log(article)
+      // console.log(ran)
+      console.log(numArticles)
+
+      // Here we construct our URL
+      // var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + article + "&?begin_date=" + beginDate + "&?end_date=" + endDate + "&&api-key=6adc2675fccd44ee9a975e4e793edcbb";
+
+
+      var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+      queryURL += '?' + $.param({
+        'api-key': "6adc2675fccd44ee9a975e4e793edcbb",
+        'q': article,
+        // fillBeginDate,
+        // 'end_date': endDate,
+      });
+
+      // if ($("start-year").val()) {
+      //   fillBeginDate = "'begin_date': " + fullStartYear();
+      //   console.log(beginDate)
+      //   console.log(fillBeginDate)
+      //   console.log(fullStartYear)
+      //   }
+
+      // Write code between the dashes below to hit the queryURL with $ajax, then take the response data
+      // and display it in the div with an id of movie-view
+
+      // YOUR CODE GOES IN THESE DASHES. DO NOT MANUALLY EDIT THE HTML ABOVE
+
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function (response) {
+        for (var i = 0; i < numArticles; i++) {
+          console.log(i)
+          var newDiv = $("<div class='card-body mb-3 rounded singleArticle'> <h3 class='card-title mt-2'id='articleTitle" + i + "'> </h3> <p class='card-text author' id='author" + i + "'></p> </div>");
+
+          $(".articleBox").append(newDiv);
+          $("#articleTitle" + i).append(response.response.docs[i].snippet + "<br>");
+          console.log(response.response.docs[i].snippet)
+          $("#author" + i).append(response.response.docs[i].byline.original + "<br>");
+          console.log(response.response.docs[i].byline.original);
+          // $("#article-view").append(response.response.docs[i].pub_date + "<br>");
+          // console.log(response.response.docs[i].pub_date)
+        }
+      });
+      // =================================================================
+
+
+      // CODE GOES HERE
+
+      // =================================================================
+    });
+  </script>
+
+
+
+</body>
+
+</html>
