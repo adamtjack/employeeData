@@ -16,6 +16,7 @@ var startDate = "";
 var monthsWorked = 0;
 var monthlyRate = 0;
 var totalBilled = 0;
+var emplyeeCount = 0;
 
 
 $("#add-employee").on("click", function (event) {
@@ -39,30 +40,12 @@ $("#add-employee").on("click", function (event) {
         totalBilled: totalBilled
     });
 
+
+    newRow.attr("id", "employee-" + emplyeeCount);
     $("#tableBody").append(newRow);
+    newColumn.append(name)
+    $("#employee" + emplyeeCount).append(newColumn)
+
 
 });
-
-// Loop for making Month select form
-for (i = 1; i < 13; i++) {
-    var newOption = $("<option>");
-    newOption.val(i);
-    newOption.text(i);
-    $("#startMonth").append(newOption);
-}
-// Loop for making Day select form
-for (i = 1; i < 32; i++) {
-    var newOption = $("<option>");
-    newOption.val(i);
-    newOption.text(i);
-    $("#startDay").append(newOption);
-}
-// Loop for making Year select form
-for (i = 1900; i < 2019; i++) {
-    var newOption = $("<option>");
-    newOption.val(i);
-    newOption.text(i);
-    $("#startYear").prepend(newOption);
-}
-$("#startYear").prepend("<option value='' selected disabled>Year</option>");
 
