@@ -3,39 +3,27 @@
 <html lang="en-us">
 
 <head>
-
     <meta charset="UTF-8">
     <title>Employee Tracker</title>
 
-    <!-- Bootstrap -->
+    <!-- Bootstrap and Icon styles -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-    <!-- Firebase Reference -->
-    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
 <body>
-
     <div class="container">
-        <div class="jumbotron" style="background-color: black; color: white">
+        <div class="jumbotron" style="background-color: #000000; color: white;">
             <h1 class="text-center">Employee Data Management</h1>
-            <h3 class="text-center">A Comprehensive Directory of Employee Billable Hours</h3>
+            <h2 class="text-center">A Comprehensive Directory of Employee Billable Hours</h2>
         </div>
-
         <div class="row">
             <div class="col-lg-12">
-                <div class="card card-primary">
-                    <div class="card-heading">
-                        <h3 class="card-title">
-                            <strong>Current Employees</strong>
-                        </h3>
-                    </div>
+                <div class="card mb-5" id="tableContainer">
                     <div class="card-body">
+                        <h3><strong>Current Employees</strong></h3>
                         <table class="table table-hover" id='employee table'>
                             <thead>
                                 <tr>
@@ -48,41 +36,122 @@
                                 </tr>
                             </thead>
                             <tbody id="tableBody">
-  
+
                             </tbody>
                         </table>
                     </div>
                 </div>
+                <div class="card mb-5" id="formContainer">
+                    <div class="card-body">
+                        <h3><strong>Add Employee</strong></h3>
+                        <form>
+                            <div class="form-group">
+                                <label for="employeeName">Employee Name:</label>
+                                <input type="text" class="form-control" id="employeeName">
+                            </div>
+                            <div class="form-group">
+                                <label for="employeeRole">Role:</label>
+                                <input type="text" class="form-control" id="employeeRole">
+                            </div>
+                            <div class="form-row">
+                                <div class="col-auto">
+                                    <label for="startDate">Start Date:</label>
+                                    <select id="startMonth" class="custom-select">
+                                        <option value="" selected disabled>Month</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="10">12</option>
+                                    </select>
+                                </div>
+                                <div class="col-auto">
+                                    <label for="startDay">&nbsp</label>
+                                    <select id="startDay" class="custom-select">
+                                        <option value="" selected disabled>Day</option>
+                                        <script>
+                                            $("")
+                                        </script>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="10">12</option>
+                                    </select>
+                                </div>
+                                <div class="col-auto">
+                                    <label for="startYear">&nbsp</label>
+                                    <select id="startYear" class="custom-select">
+                                        <option value="" selected disabled>Year</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2017">2017</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="10">12</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="end-year">End Year (Optional):</label>
+                                <input type="text" class="form-control" id="end-year">
+                            </div>
+                            <button type="button" class="btn btn-default" id="addButton">
+                            <i class="fa fa-plus"></i> Add</button>
+                            <button type="button" class="btn btn-default" id="clearButton">
+                            <i class="fa fa-trash"></i> Clear Form</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
 
-        <div class="card-body">
-            <form>
-                <div class="form-group">
-                    <label for="name">Employee Name</label>
-                    <input type="text" class="form-control" id="name">
-                </div>
-                <div class="form-group">
-                    <label for="role">Role</label>
-                    <input type="text" class="form-control" id="role">
-                </div>
-                <div class="form-group">
-                    <label for="startDate">Start Date</label>
-                    <input type="text" class="form-control" id="startDate">
-                </div>
-                <div class="form-group">
-                    <label for="monthlyRate">Monthly Rate</label>
-                    <input type="text" class="form-control" id="monthlyRate">
-                </div>
-                <button type="button" class="btn btn-primary" id="add-employee">Submit</button>
-                
-            </form>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <hr>
+            <h5 class="text-center">
+            <small>Made by Team7 MacGang
+                <i class="material-icons" style="font-size:16px">desktop_mac</i>
+            </small>
+            </h5>
+        </div>
         </div>
     </div>
 
-    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
     <script src="timesheetLogic.js"></script>
+
 </body>
 
 </html>
