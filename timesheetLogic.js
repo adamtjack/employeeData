@@ -16,3 +16,7 @@ var config = {
   var monthsWorked = 0;
   var monthlyRate = 0;
   var totalBilled = 0;
+
+
+//   $("#add-employee").on("click", function(event) {
+//     event.preventDefault();
